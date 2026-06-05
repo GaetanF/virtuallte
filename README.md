@@ -34,7 +34,7 @@ flow without any physical radio.
 ## Building
 
 ```sh
-make            # produces ./virtual-mbim
+make            # produces ./virtuallte
 ```
 
 This is Linux-only (it includes `<linux/usb/raw_gadget.h>`).
@@ -119,8 +119,8 @@ the UPF data network and able to route SIP `MESSAGE` to an IP-SM-GW / SMSC:
     - subnet: 10.46.0.0/16
       gateway: 10.46.0.1
       dnn: ims
-      p-cscf:
-        - 10.46.0.10
+  p-cscf:
+    - 10.46.0.10
 ```
 
 ## License
