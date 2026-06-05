@@ -1,0 +1,11 @@
+#!/usr/bin/make -f
+# Build with Debian hardening flags; dh drives the standard build/install.
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@
+
+# virtuallte@.service is a template: it is enabled per instance by the admin
+# (e.g. systemctl enable virtuallte@ue1), so do not auto-enable/start it.
+override_dh_installsystemd:
+	dh_installsystemd --no-enable --no-start --name=virtuallte@

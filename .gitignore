@@ -1,0 +1,18 @@
+# Build artifacts
+**/*.o
+/virtuallte
+
+# Unit-test binaries and macOS debug bundles
+/tests/*_test
+**/*.dSYM/
+
+# Local UE config at repo root (packaging/*.conf.example is tracked)
+/*.conf
+
+# Debian packaging build outputs
+/debian/virtuallte/
+/debian/.debhelper/
+/debian/files
+/debian/debhelper-build-stamp
+/debian/*.substvars
+/debian/*.debhelper.log

@@ -1,0 +1,56 @@
+# VirtualLTE UE instance configuration.
+#
+# Copy this file to /etc/virtuallte/<instance>.conf and start the matching
+# systemd template instance, e.g.:
+#
+#   cp /etc/virtuallte/ue1.conf.example /etc/virtuallte/ue1.conf
+#   systemctl enable --now virtuallte@ue1
+#
+# The instance name (ue1) maps to /etc/virtuallte/ue1.conf.
+
+[device]
+imei=867530900000001
+manufacturer=Quectel
+model=RM520N-GL
+firmware=FAKA01
+serial=deadbeef0001
+
+[sim]
+sim_present=true
+imsi=208010123456789
+iccid=8933012345678901234
+key=00112233445566778899aabbccddeeff
+opc=4dc418d2c117c82115ce5fa6e9d9c103
+amf=8000
+
+[network]
+mcc=208
+mnc=01
+dnn=internet
+operator_long=EllaLab
+operator_short=EllaLab
+pdu_type=ipv4
+slice_sst=1
+
+[ran]
+# UERANSIM-compatible gNB (RLS) endpoint.
+gnb_address=10.203.0.2
+gnb_port=4997
+
+[backend]
+mode=real
+
+# SMS over IMS (SIP). Requires an "ims" DNN with a reachable P-CSCF.
+[ims]
+enabled=true
+
+[sms]
+enabled=true
+transport=ims
+
+[logging]
+level=info
+
+# Per-domain log levels (optional): mbim, ran, mm, sm, up, rrc, nas, ims, ...
+[logging.domains]
+ims=info

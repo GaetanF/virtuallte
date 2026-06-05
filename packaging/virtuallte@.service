@@ -1,0 +1,33 @@
+[Unit]
+Description=VirtualLTE UE instance %i (virtual 5G/LTE CDC-MBIM modem)
+Documentation=file:/usr/share/doc/virtuallte/README.md
+After=network-online.target
+Wants=network-online.target
+# Each instance reads its own config: virtuallte@ue1 -> /etc/virtuallte/ue1.conf
+ConditionPathExists=/etc/virtuallte/%i.conf
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/virtuallte --config /etc/virtuallte/%i.conf
+Restart=on-failure
+RestartSec=3
+
+# --- Sandboxing ---
+# Runs as root: it needs the USB gadget /dev/raw-gadget and a virtual UDC.
+# The raw_gadget / dummy_hcd modules are loaded via modules-load.d, so the
+# service itself needs no module-loading capability.
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ProtectControlGroups=yes
+ProtectKernelLogs=yes
+RestrictSUIDSGID=yes
+RestrictRealtime=yes
+RestrictAddressFamilies=AF_INET AF_UNIX AF_NETLINK
+LockPersonality=yes
+# Keep /dev/raw-gadget accessible (default DevicePolicy=auto); do not set
+# DevicePolicy=closed without an explicit DeviceAllow for it.
+
+[Install]
+WantedBy=multi-user.target

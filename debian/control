@@ -1,0 +1,21 @@
+Source: virtuallte
+Section: net
+Priority: optional
+Maintainer: Gaëtan Ferez <gaetan@ferez.fr>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+Homepage: https://github.com/gaetanf/virtuallte
+
+Package: virtuallte
+Architecture: linux-any
+Depends: ${shlibs:Depends}, ${misc:Depends}, kmod
+Description: virtual 5G/LTE UE exposed as a USB CDC-MBIM modem
+ VirtualLTE is a userspace UE (user equipment) that speaks the UERANSIM RLS
+ protocol toward a gNB and presents itself to the host as a USB CDC-MBIM modem
+ through the Linux USB raw-gadget interface. It implements 5G NAS registration,
+ PDU sessions, a threaded user-plane data path, and SMS over IMS (MO and MT).
+ .
+ Each UE instance is driven by a configuration file under /etc/virtuallte/ and
+ managed by the virtuallte@.service systemd template. For example,
+ "virtuallte@ue1" reads /etc/virtuallte/ue1.conf.

@@ -1,0 +1,12 @@
+#ifndef UE_EVENTS_H
+#define UE_EVENTS_H
+
+enum ue_event_type {
+    UE_EVENT_NONE = 0,
+    UE_EVENT_REGISTER_REQUESTED,
+    UE_EVENT_CONNECT_REQUESTED,
+    UE_EVENT_DISCONNECT_REQUESTED,
+    UE_EVENT_RADIO_SET,
+};
+
+#endif

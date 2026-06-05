@@ -1,0 +1,11 @@
+virtuallte (0.1.0) unstable; urgency=medium
+
+  * Initial release.
+  * 5G NAS registration, PDU session establishment and threaded user-plane
+    data path over the UERANSIM RLS protocol.
+  * USB CDC-MBIM frontend via the Linux USB raw-gadget interface.
+  * SMS over IMS: SIP REGISTER (AKA/MD5 digest), MO and MT delivery with
+    RP-DATA / RP-ACK.
+  * systemd template service virtuallte@.service driven by /etc/virtuallte/.
+
+ -- Gaëtan Ferez <gaetan@ferez.fr>  Fri, 05 Jun 2026 09:00:00 +0000
