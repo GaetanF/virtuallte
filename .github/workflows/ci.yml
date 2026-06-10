@@ -40,12 +40,14 @@ jobs:
       - name: Build package
         run: dpkg-buildpackage -us -uc -b
 
+      - name: Collect package artifacts
+        run: |
+          mkdir -p dist
+          cp ../virtuallte_*.deb ../virtuallte_*.buildinfo ../virtuallte_*.changes dist/
+
       - name: Upload package artifacts
         uses: actions/upload-artifact@v4
         with:
           name: virtuallte-debian-package
-          path: |
-            ../virtuallte_*.deb
-            ../virtuallte_*.buildinfo
-            ../virtuallte_*.changes
+          path: dist/*
           if-no-files-found: error
